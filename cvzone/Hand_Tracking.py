@@ -4,10 +4,9 @@ import cv2
 cap = cv2.VideoCapture(1)           #here you need to specify which camera use (ex: 0 or 1)
 detector = HandDetector(detectionCon=0.8, maxHands=2)
 while True:
-    # Get image frame
     success, img = cap.read()
     # Find the hand and its landmarks
-    hands, img = detector.findHands(img, draw=True)  # with draw
+    hands, img = detector.findHands(img, draw=True)
 
     if hands:
         # Hand 1
@@ -32,7 +31,7 @@ while True:
             # Find Distance between two Landmarks. Could be same hand or different hands
             index_finger1 = lmList1[8][:2]      # 8 is the index of the forefinger according to MediaPipe hands keypoints 
             index_finger2 = lmList2[8][:2]
-            length, info, img = detector.findDistance(index_finger1, index_finger2, img)  # with draw
+            length, info, img = detector.findDistance(index_finger1, index_finger2, img)
             print("Distance(pixels): ", round(length, 2))
 
     # Display
